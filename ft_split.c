@@ -6,7 +6,7 @@
 /*   By: aannett <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 14:22:44 by aannett           #+#    #+#             */
-/*   Updated: 2020/11/19 15:49:04 by aannett          ###   ########.fr       */
+/*   Updated: 2020/11/20 21:23:24 by aannett          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ char				**ft_split(const char *s, char c)
 	unsigned int	k;
 	char			**ret;
 
+	if (!s)
+		return (NULL);
 	if (!(ret = malloc(sizeof(char*) * (ft_split_count(s, c) + 1))))
 		return (NULL);
 	j = 0;

@@ -1,5 +1,7 @@
 NAME = libft.a
 
+INCLUDE = libft.h
+
 CC = gcc
 
 CFLAGS = -Wall -Werror -Wextra -I. -c
@@ -39,19 +41,41 @@ SRC =		ft_atoi.c \
 		ft_putendl_fd.c \
 		ft_putnbr_fd.c \
 
+BONUS =		ft_lstnew.c \
+		ft_lstadd_front.c \
+		ft_lstsize.c \
+		ft_lstlast.c \
+		ft_lstadd_back.c \
+		ft_lstdelone.c	\
+		ft_lstclear.c \
+		ft_lstiter.c \
+		ft_lstmap.c \
+
+
 OBJ = $(SRC:.c=.o)
+
+BOBJ = $(BONUS:.c=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	ar rc $(NAME) $(OBJ)
-	ranlib $(NAME)
+	$(CC) $(CFLAGS) $(SRC) -I $(INCLUDE)
+	ar rcs $(NAME) $(OBJ)
 
+bonus:	 $(BOBJ)
+	$(CC) $(CFLAGS) $(BONUS) -I $(INCLUDE)
+	ar rcs $(NAME) $(BOBJ)
+	
+	
 clean:
-	rm -f $(OBJ)
+	rm -f $(OBJ) 
+	rm -f $(BOBJ)
 
 fclean: clean
 	rm -f $(NAME)
+	rm -f *.o
+	rm -f *.a
+	rm -f *.gch
 
 re: fclean all
 
