@@ -6,7 +6,7 @@
 /*   By: aannett <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/18 02:44:20 by aannett           #+#    #+#             */
-/*   Updated: 2020/11/18 02:44:26 by aannett          ###   ########.fr       */
+/*   Updated: 2020/11/22 23:39:16 by aannett          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 		j--;
 	if (i >= j)
 		return (ft_strdup(""));
-	ret = malloc(sizeof(char) * ((j - i) + 2));
-	if (!ret)
+	if (!(ret = ft_substr((char*)s1, i, (j - i) + 1)))
 		return (NULL);
-	ret = ft_substr((char*)s1, i, (j - i) + 1);
-	ret[(j - i) + 2] = '\0';
 	return (ret);
 }

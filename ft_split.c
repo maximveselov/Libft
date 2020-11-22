@@ -6,7 +6,7 @@
 /*   By: aannett <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/17 14:22:44 by aannett           #+#    #+#             */
-/*   Updated: 2020/11/20 21:23:24 by aannett          ###   ########.fr       */
+/*   Updated: 2020/11/23 00:10:16 by aannett          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,18 @@ static unsigned int	ft_split_count(const char *s, int c)
 	unsigned int	i;
 	unsigned int	j;
 
-	i = 1;
+	i = 0;
 	j = 0;
-	while (s[j] && s[j] == c)
+	while (s[j] == c)
 		j++;
 	while (s[j])
 	{
-		if (s[j] == c && s[j + 1] != c && s[j + 1])
+		if (s[j] != c)
+		{
 			i++;
+			while (s[j] != c && s[j])
+				j++;
+		}
 		j++;
 	}
 	return (i);
@@ -81,8 +85,6 @@ char				**ft_split(const char *s, char c)
 	unsigned int	k;
 	char			**ret;
 
-	if (!s)
-		return (NULL);
 	if (!(ret = malloc(sizeof(char*) * (ft_split_count(s, c) + 1))))
 		return (NULL);
 	j = 0;
@@ -91,11 +93,12 @@ char				**ft_split(const char *s, char c)
 	{
 		k = ft_get_first_ind(s, c, j);
 		j = ft_get_last_ind(s, c, k);
-		if (!(ret[i] = malloc(sizeof(char) * (j - k + 1))))
-			return (ft_clear_slot(ret));
 		if (k == j)
 			break ;
-		ret[i++] = ft_substr(s, k, j - k);
+		ret[i] = ft_substr(s, k, j - k);
+		if (!ret[i])
+			return (ft_clear_slot(ret));
+		i++;
 	}
 	ret[i] = NULL;
 	return (ret);
