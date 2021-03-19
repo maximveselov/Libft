@@ -1,10 +1,12 @@
-## Libft
-# My rework of basic libc functions. 
-# Functions have been rewritten using only write, malloc and free. 
-# 
-# Compiles with gcc -Wall -Wextra -Werror
-##
-## Use "make bonus" to add functions that manipulate linked lists.
+# Libft
+My rework of basic libc functions. 
+Functions have been rewritten using only write, malloc and free. 
+Compiles with gcc -Wall -Wextra -Werror
+Use "make bonus" to add functions that manipulate linked lists.
+
+Generates libft.a file, compile as
+gcc main.c libft.a
+using libft.h as header
 ##
 ###  t_list = takes (void*) into a linked list
 ##
